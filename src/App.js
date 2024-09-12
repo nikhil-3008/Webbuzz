@@ -6,7 +6,7 @@ import HeroSection from './components/Herosection';
 function App() {
   return (
     <div className="App">
-     
+      <Navbar/>
       <HeroSection/>
     </div>
   );
