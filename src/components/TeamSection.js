@@ -1,7 +1,26 @@
-import React from "react";
-import Carousel from "react-bootstrap/Carousel";
+import React, { useState } from "react";
 
 const TeamSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const images = [
+    { src: "/path-to-image1.jpg", alt: "Player 1" },
+    { src: "/path-to-image2.jpg", alt: "Player 2" },
+    { src: "/path-to-image3.jpg", alt: "Player 3" },
+  ];
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   return (
     <div className="flex justify-center py-16 px-8 bg-gray-100">
       {/* Card Wrapper */}
@@ -31,56 +50,55 @@ const TeamSection = () => {
             <p className="text-gray-600 mb-6 text-center">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <Carousel
-              nextIcon={
-                <span
-                  className="w-8 h-8 flex justify-center items-center rounded-full border-2 border-gray-500 text-black hover:bg-gray-200 transition"
+
+            {/* Image Carousel */}
+            <div className="relative w-full">
+              <img
+                className="w-full h-auto rounded-lg"
+                src={images[currentIndex].src}
+                alt={images[currentIndex].alt}
+              />
+
+              {/* Previous Button */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white border border-gray-400 p-2 rounded-full hover:bg-gray-200 transition"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-chevron-left"
+                  viewBox="0 0 16 16"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-chevron-right"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M6.646 14.854a.5.5 0 0 1-.708-.708l4.5-4.5a.5.5 0 0 1 0-.708l-4.5-4.5a.5.5 0 1 1 .708-.708l5 5a.5.5 0 0 1 0 .708l-5 5z"
-                    />
-                  </svg>
-                </span>
-              }
-              prevIcon={
-                <span
-                  className="w-8 h-8 flex justify-center items-center rounded-full border-2 border-gray-500 text-black hover:bg-gray-200 transition ml-[-12px]" // Offset to the left
+                  <path
+                    fillRule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1 0 .708l4.5 4.5a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 0 1 .708 0z"
+                  />
+                </svg>
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={handleNext}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white border border-gray-400 p-2 rounded-full hover:bg-gray-200 transition"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-chevron-right"
+                  viewBox="0 0 16 16"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-chevron-left"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M11.354 1.646a.5.5 0 0 1 0 .708l-4.5 4.5a.5.5 0 0 1 0 .708l4.5 4.5a.5.5 0 0 1-.708.708l-5-5a.5.5 0 0 1 0-.708l5-5a.5.5 0 0 1 .708 0z"
-                    />
-                  </svg>
-                </span>
-              }
-            >
-              <Carousel.Item>
-                <img className="w-full h-auto" src="/path-to-image1.jpg" alt="Player 1" />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img className="w-full h-auto" src="/path-to-image2.jpg" alt="Player 2" />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img className="w-full h-auto" src="/path-to-image3.jpg" alt="Player 3" />
-              </Carousel.Item>
-            </Carousel>
+                  <path
+                    fillRule="evenodd"
+                    d="M6.646 14.854a.5.5 0 0 1-.708-.708l5-5a.5.5 0 0 1 0-.708l-5-5a.5.5 0 1 1 .708-.708l5 5a.5.5 0 0 1 0 .708l-5 5z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
